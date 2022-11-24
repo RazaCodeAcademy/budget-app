@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
   },
   verifiedAt: {
     type: Date,
-    default: null
+    default: null,
   },
   verificationToken: String,
   verificationTokenExpire: Date,
@@ -54,21 +54,26 @@ UserSchema.methods.getSignedJwtToken = function () {
   });
 };
 
+// match user enetered password to hashed password in database
+UserSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
 // generate and hash verification token
-UserSchema.methods.getVerificationToken = function(){
-    // generate token
-    const verifidToken = crypto.randomBytes(20).toString('hex');
+UserSchema.methods.getVerificationToken = function () {
+  // generate token
+  const verifidToken = crypto.randomBytes(20).toString("hex");
 
-    // hash token and set to verificationToken field
-    this.verificationToken = crypto
-    .createHash('sha256')
+  // hash token and set to verificationToken field
+  this.verificationToken = crypto
+    .createHash("sha256")
     .update(verifidToken)
-    .digest('hex');
+    .digest("hex");
 
-    // set expire
-    this.verificationTokenExpire = Date.now() + 60 * 60 * 1000;
+  // set expire
+  this.verificationTokenExpire = Date.now() + 60 * 60 * 1000;
 
-    return verifidToken;
-}
+  return verifidToken;
+};
 
 module.exports = mongoose.model("User", UserSchema);
