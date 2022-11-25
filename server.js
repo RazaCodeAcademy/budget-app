@@ -1,17 +1,17 @@
 const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
-const logger = require('./middleware/logger');
-const fileupload = require('express-fileupload');
-const cookieParser = require('cookie-parser');
-const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require('helmet');
-const xss = require('xss-clean');
-const rateLimit = require('express-rate-limit');
-const hpp = require('hpp');
-const cors = require('cors');
-const errorHandler = require('./middleware/error');
-const connectDB = require('./config/db');
+const logger = require("./middleware/logger");
+const fileupload = require("express-fileupload");
+const cookieParser = require("cookie-parser");
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const rateLimit = require("express-rate-limit");
+const hpp = require("hpp");
+const cors = require("cors");
+const errorHandler = require("./middleware/error");
+const connectDB = require("./config/db");
 
 // route files
 const auth = require("./routes/auth");
@@ -51,7 +51,7 @@ app.use(xss());
 // rate limiting
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins
-  max: 100
+  max: 100,
 });
 
 app.use(limiter);
@@ -77,10 +77,9 @@ const server = app.listen(
   )
 );
 
-
 // handle unhandled promise rejections
-process.on('unhandledRejection', (err, promise) => {
-    console.log(`Error: ${err.message}`)
-    // close server & exit process
-    server.close(() => process.exit(1));
-})
+process.on("unhandledRejection", (err, promise) => {
+  console.log(`Error: ${err.message}`);
+  // close server & exit process
+  server.close(() => process.exit(1));
+});
