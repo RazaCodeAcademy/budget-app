@@ -12,6 +12,7 @@ exports.getCategories = asyncHandler(async (req, res, next) => {
       new ErrorResponse(`You are not authorized to access this route`, 401)
     );
   }
+  
   res.status(200).json(res.advancedResults);
 });
 

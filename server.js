@@ -16,6 +16,7 @@ const connectDB = require("./config/db");
 // route files
 const auth = require("./routes/auth");
 const category = require("./routes/category");
+const income = require("./routes/income");
 
 // load env variables
 dotenv.config({ path: "./config/.env" });
@@ -66,6 +67,7 @@ app.use(cors());
 // mount routers
 app.use("/api/auth", auth);
 app.use("/api/categories", category);
+app.use("/api/incomes", income);
 
 app.use(errorHandler);
 
