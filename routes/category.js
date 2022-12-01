@@ -5,7 +5,7 @@ const {
   createCategory,
   getCategory,
   updateCategory,
-  deleteCategory
+  deleteCategory,
 } = require("../controllers/category");
 
 const Category = require("../models/Category");
