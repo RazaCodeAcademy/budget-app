@@ -82,7 +82,7 @@ exports.updateExpense = asyncHandler(async (req, res, next) => {
     );
   }
 
-  expense = await Expense.findOneAndUpdate(req.params.id, req.body, {
+  expense = await Expense.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });

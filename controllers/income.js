@@ -77,7 +77,7 @@ exports.updateIncome = asyncHandler(async (req, res, next) => {
     );
   }
 
-  income = await Income.findOneAndUpdate(req.params.id, req.body, {
+  income = await Income.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });

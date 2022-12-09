@@ -25,6 +25,6 @@ router
   .post("/forgot-password", forgotPassword)
   .put("/reset-password/:resetToken", resetPassword)
   .post("/update-password", protect, updatePassword)
-  .put("/email-verification/:verifiedToken", emailVerification);
+  .get("/email-verification/:verifiedToken", emailVerification);
 
 module.exports = router;

@@ -83,7 +83,7 @@ exports.updateCategory = asyncHandler(async (req, res, next) => {
     );
   }
 
-  category = await Category.findOneAndUpdate(req.params.id, req.body, {
+  category = await Category.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
